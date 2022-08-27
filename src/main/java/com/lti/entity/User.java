@@ -1,5 +1,6 @@
 package com.lti.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,7 +10,9 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
+	@Column(name = "userId")
 	private int userId;
+	
 	private String password;
 	
 	public int getUserId() {
@@ -23,11 +26,6 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + "]";
 	}
 	
 }

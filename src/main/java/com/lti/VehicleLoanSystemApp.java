@@ -8,6 +8,7 @@ public class VehicleLoanSystemApp {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VehicleLoanSystemApp.class, args);
+		System.out.println("Working!");
 	}
 
 }

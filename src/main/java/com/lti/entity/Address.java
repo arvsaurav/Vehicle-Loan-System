@@ -1,10 +1,8 @@
 package com.lti.entity;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,9 +10,8 @@ import javax.persistence.Table;
 public class Address {
 	
 	@Id
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userId")
-	private User user;
+	@Column(name = "addressId")
+	private int addressId;
 	
 	private String state;
 	private String city;
@@ -22,11 +19,11 @@ public class Address {
 	private String houseNo;
 	private int pinCode;
 	
-	public User getUser() {
-		return user;
+	public int getAddressId() {
+		return addressId;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
 	}
 	public String getState() {
 		return state;
@@ -59,10 +56,4 @@ public class Address {
 		this.pinCode = pinCode;
 	}
 	
-	@Override
-	public String toString() {
-		return "Address [user=" + user + ", state=" + state + ", city=" + city + ", area=" + area + ", houseNo="
-				+ houseNo + ", pinCode=" + pinCode + "]";
-	}
-
 }

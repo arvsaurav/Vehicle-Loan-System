@@ -1,20 +1,45 @@
 package com.lti.entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "applicants")
 public class Applicant {
 	
 	@Id
+	private int applicantId; 
+	
+	@Autowired
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
 	private User user;
+	
+	@Autowired
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "addressId")
+	private Address address;
+
+	@Autowired
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "applicantId")
+	private Collection<Loan> loanList = new ArrayList<Loan>();
+	
+	
+	@Autowired
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "applicantId")
+	private Collection<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	
 	private String name;
 	private int age;
@@ -27,11 +52,35 @@ public class Applicant {
 	private long aadharNo;
 	private String panNo;
 	
+	public int getApplicantId() {
+		return applicantId;
+	}
+	public void setApplicantId(int applicantId) {
+		this.applicantId = applicantId;
+	}
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public Collection<Loan> getLoanList() {
+		return loanList;
+	}
+	public void setLoanList(Collection<Loan> loanList) {
+		this.loanList = loanList;
+	}
+	public Collection<Vehicle> getVehicleList() {
+		return vehicleList;
+	}
+	public void setVehicleList(Collection<Vehicle> vehicleList) {
+		this.vehicleList = vehicleList;
 	}
 	public String getName() {
 		return name;
@@ -94,11 +143,4 @@ public class Applicant {
 		this.panNo = panNo;
 	}
 	
-	@Override
-	public String toString() {
-		return "Applicant [user=" + user + ", name=" + name + ", age=" + age + ", gender=" + gender + ", employment="
-				+ employment + ", existingEmi=" + existingEmi + ", salary=" + salary + ", phoneNo=" + phoneNo
-				+ ", emailId=" + emailId + ", aadharNo=" + aadharNo + ", panNo=" + panNo + "]";
-	}
-
 }

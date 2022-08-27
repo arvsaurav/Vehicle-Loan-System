@@ -1,25 +1,18 @@
 package com.lti.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "loan")
+@Table(name = "loans")
 public class Loan {
 	
 	@Id
 	private int loanId;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userId")
-	private User user;
-	
 	private String accountType;
-	private long ammount;
+	private long amount;
 	private int loanTenure;
 	private int rateOfInterest;
 	private long emi;
@@ -31,23 +24,17 @@ public class Loan {
 	public void setLoanId(int loanId) {
 		this.loanId = loanId;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
 	public String getAccountType() {
 		return accountType;
 	}
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
-	public long getAmmount() {
-		return ammount;
+	public long getAmount() {
+		return amount;
 	}
-	public void setAmmount(long ammount) {
-		this.ammount = ammount;
+	public void setAmount(long amount) {
+		this.amount = amount;
 	}
 	public int getLoanTenure() {
 		return loanTenure;
@@ -74,11 +61,4 @@ public class Loan {
 		this.loanStatus = loanStatus;
 	}
 	
-	@Override
-	public String toString() {
-		return "Loan [loanId=" + loanId + ", user=" + user + ", accountType=" + accountType + ", ammount=" + ammount
-				+ ", loanTenure=" + loanTenure + ", rateOfInterest=" + rateOfInterest + ", emi=" + emi + ", loanStatus="
-				+ loanStatus + "]";
-	}
-
 }
