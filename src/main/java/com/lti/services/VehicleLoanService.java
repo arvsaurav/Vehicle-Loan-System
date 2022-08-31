@@ -51,4 +51,12 @@ public interface VehicleLoanService {
 
 	public Optional<Vehicle> getVehicleById(int vehicleId);
 
+	public Loan deleteLoan(int loanId);
+
+	public Vehicle deleteVehicle(int vehicleId);
+
+	public List<Address> viewAllAddress();
+
+	public Address deleteAddress(int addressId);
+
 }

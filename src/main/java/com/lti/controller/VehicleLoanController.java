@@ -94,6 +94,17 @@ public class VehicleLoanController {
 		return vService.getAddressById(addressId);
 	}
 	
+	@GetMapping("/addresses")
+	public List<Address> viewAllAddress() {
+		return vService.viewAllAddress();
+	}
+	
+	@DeleteMapping("/address/{addressId}")
+	public Address deleteAddress(@PathVariable("addressId") int addressId) {
+		Address deletedAddress = vService.deleteAddress(addressId);
+		return deletedAddress;
+	}
+	
 	@PostMapping("/addloan")
 	public Loan addLoanDetails(@RequestBody Loan loan) {
 		return vService.addLoanDetails(loan);
@@ -116,6 +127,12 @@ public class VehicleLoanController {
 		return vService.getLoanById(loanId);
 	}
 	
+	@DeleteMapping("/loan/{loanId}")
+	public Loan deleteLoan(@PathVariable("loanId") int loanId) {
+		Loan deletedLoan = vService.deleteLoan(loanId);
+		return deletedLoan;
+	}
+	
 	@PostMapping("/addvehicle")
 	public Vehicle addVehicleDetails(@RequestBody Vehicle vehicle) {
 		return vService.addVehicleDetails(vehicle);
@@ -136,6 +153,12 @@ public class VehicleLoanController {
 	@GetMapping("/vehicle/{vehicleId}") 
 	public Optional<Vehicle> getVehicleById(@PathVariable int vehicleId) {
 		return vService.getVehicleById(vehicleId);
+	}
+	
+	@DeleteMapping("/vehicle/{vehicleId}")
+	public Vehicle deleteVehicle(@PathVariable("vehicleId") int vehicleId) {
+		Vehicle deletedVehicle = vService.deleteVehicle(vehicleId);
+		return deletedVehicle;
 	}
 	
 }

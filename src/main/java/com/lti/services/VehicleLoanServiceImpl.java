@@ -121,6 +121,23 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 		return addressRepo.findById(id);
 	}
 	
+	@Override
+	public List<Address> viewAllAddress() {
+		return addressRepo.findAll();
+	}
+	
+	@Override
+	@Transactional
+	public Address deleteAddress(int addressId) {
+		Optional<Address> findAddress = addressRepo.findById(addressId);
+		Address address = null;
+		if (findAddress.isPresent()) {
+			address = findAddress.get();
+			addressRepo.delete(address);
+		} 
+		return address;
+	}
+	
 	@Transactional
 	@Override
 	public Loan addLoanDetails(@RequestBody Loan loanDetails) {
@@ -145,6 +162,18 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 		return loanRepo.findById(loanId);
 	}
 	
+	@Override
+	@Transactional
+	public Loan deleteLoan(int loanId) {
+		Optional<Loan> findLoan = loanRepo.findById(loanId);
+		Loan loan = null;
+		if (findLoan.isPresent()) {
+			loan = findLoan.get();
+			loanRepo.delete(loan);
+		} 
+		return loan;
+	}
+	
 	@Transactional
 	@Override
 	public Vehicle addVehicleDetails(@RequestBody Vehicle vehicleDetails) {
@@ -167,6 +196,18 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 	@Override
 	public Optional<Vehicle> getVehicleById(int vehicleId) {
 		return vehicleRepo.findById(vehicleId);
+	}
+	
+	@Override
+	@Transactional
+	public Vehicle deleteVehicle(int vehicleId) {
+		Optional<Vehicle> findVehicle = vehicleRepo.findById(vehicleId);
+		Vehicle vehicle = null;
+		if (findVehicle.isPresent()) {
+			vehicle = findVehicle.get();
+			vehicleRepo.delete(vehicle);
+		} 
+		return vehicle;
 	}
 	
 }
