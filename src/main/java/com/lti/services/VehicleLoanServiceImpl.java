@@ -49,6 +49,13 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 		return null;
 	}
 	
+	@Transactional
+	@Override
+	public User updateUser(int id, User user) {
+		userRepo.save(user);
+		return user;
+	}
+	
 	@Override
 	public Optional<User> getUserById(int id) {
 		return userRepo.findById(id);
@@ -161,26 +168,5 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 	public Optional<Vehicle> getVehicleById(int vehicleId) {
 		return vehicleRepo.findById(vehicleId);
 	}
-	
-	
-	// we will do it from Angular side
-//	@Override
-//	public User userLogin(User user) {
-//		
-//		try {
-//			int userId = user.getUserId();
-//			String password = user.getPassword();
-//			User u = (User) em.createQuery("select u from user u where u.userId=:userId").setParameter("userId", userId);
-//			if((u.getUserId() == userId) && (u.getPassword().equals(password))) {
-//				// userVerified
-//				return u;
-//			}
-//		}
-//		catch(Exception e) {
-//			// mention exception here
-//		}
-//		return null;
-//	}
-		
 	
 }

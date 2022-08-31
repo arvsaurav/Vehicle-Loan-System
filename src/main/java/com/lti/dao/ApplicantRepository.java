@@ -7,5 +7,6 @@ import com.lti.entity.Applicant;
 
 @Repository
 public interface ApplicantRepository extends JpaRepository<Applicant, Integer> {
+	
 
 }

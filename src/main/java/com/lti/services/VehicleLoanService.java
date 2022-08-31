@@ -17,6 +17,8 @@ public interface VehicleLoanService {
 	
 	public Optional<User> getUserById(int id);
 	
+	public User updateUser(int id, User user);
+	
 	public Applicant registerApplicant(Applicant applicant);
 	
 	public List<Applicant> viewAllApplicant();
@@ -47,6 +49,6 @@ public interface VehicleLoanService {
 	
 	public Vehicle updateVehicleDetails(int vehicleId, Vehicle vehicle);
 
-	public Optional<Vehicle> getVehicleById(int vehicleId);	
+	public Optional<Vehicle> getVehicleById(int vehicleId);
 
 }

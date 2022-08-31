@@ -1,7 +1,10 @@
 package com.lti.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -9,7 +12,11 @@ import javax.persistence.Table;
 public class Loan {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="l_seq")
+	@SequenceGenerator(name="l_seq", initialValue = 2001, sequenceName = "l_seq", allocationSize = 1)
 	private int loanId;
+	
+	private int userId;
 	
 	private String accountType;
 	private long amount;
@@ -18,6 +25,12 @@ public class Loan {
 	private long emi;
 	private String loanStatus;
 	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public int getLoanId() {
 		return loanId;
 	}
@@ -60,5 +73,5 @@ public class Loan {
 	public void setLoanStatus(String loanStatus) {
 		this.loanStatus = loanStatus;
 	}
-	
+
 }

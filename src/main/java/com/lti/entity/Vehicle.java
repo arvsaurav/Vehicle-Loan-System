@@ -1,7 +1,10 @@
 package com.lti.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -9,7 +12,11 @@ import javax.persistence.Table;
 public class Vehicle {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="v_seq")
+	@SequenceGenerator(name="v_seq", initialValue = 3001, sequenceName = "v_seq", allocationSize = 1)
 	private int vehicleId;
+	
+	private int userId;
 	
 	private String manufacturer;
 	private String vehicleType;
@@ -17,6 +24,12 @@ public class Vehicle {
 	private long exShowroomPrice;
 	private long onRoadPrice;
 	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public int getVehicleId() {
 		return vehicleId;
 	}
@@ -53,5 +66,5 @@ public class Vehicle {
 	public void setOnRoadPrice(long onRoadPrice) {
 		this.onRoadPrice = onRoadPrice;
 	}
-	
+
 }

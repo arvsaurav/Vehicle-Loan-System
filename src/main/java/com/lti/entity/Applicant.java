@@ -1,45 +1,23 @@
 package com.lti.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "applicants")
 public class Applicant {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="s_seq")
+	@SequenceGenerator(name="s_seq", initialValue = 501, sequenceName = "s_seq", allocationSize = 1)
 	private int applicantId; 
-	
-	@Autowired
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userId")
-	private User user;
-	
-	@Autowired
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "addressId")
-	private Address address;
 
-	@Autowired
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "applicantId")
-	private Collection<Loan> loanList = new ArrayList<Loan>();
-	
-	
-	@Autowired
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "applicantId")
-	private Collection<Vehicle> vehicleList = new ArrayList<Vehicle>();
+	private int userId;
 	
 	private String name;
 	private int age;
@@ -51,36 +29,17 @@ public class Applicant {
 	private String emailId;
 	private long aadharNo;
 	private String panNo;
-	
 	public int getApplicantId() {
 		return applicantId;
 	}
 	public void setApplicantId(int applicantId) {
 		this.applicantId = applicantId;
 	}
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	public Collection<Loan> getLoanList() {
-		return loanList;
-	}
-	public void setLoanList(Collection<Loan> loanList) {
-		this.loanList = loanList;
-	}
-	public Collection<Vehicle> getVehicleList() {
-		return vehicleList;
-	}
-	public void setVehicleList(Collection<Vehicle> vehicleList) {
-		this.vehicleList = vehicleList;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public String getName() {
 		return name;
