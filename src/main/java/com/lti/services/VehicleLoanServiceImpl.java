@@ -83,6 +83,11 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 		return applicantRepo.findById(id);
 	}
 	
+	@Override
+	public List<Applicant> getApplicantByUserId(int userId) {
+		return applicantRepo.findByUserId(userId);
+	}
+	
 	@Transactional
 	@Override
 	public Applicant updateApplicant(int applicantId, Applicant applicant) {
@@ -119,6 +124,11 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 	@Override
 	public Optional<Address> getAddressById(int id) {
 		return addressRepo.findById(id);
+	}
+	
+	@Override
+	public List<Address> getAddressByUserId(int userId) {
+		return addressRepo.findByUserId(userId);
 	}
 	
 	@Override
@@ -163,6 +173,11 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 	}
 	
 	@Override
+	public List<Loan> getLoanByUserId(int userId) {
+		return loanRepo.findByUserId(userId);
+	}
+	
+	@Override
 	@Transactional
 	public Loan deleteLoan(int loanId) {
 		Optional<Loan> findLoan = loanRepo.findById(loanId);
@@ -196,6 +211,11 @@ public class VehicleLoanServiceImpl implements VehicleLoanService {
 	@Override
 	public Optional<Vehicle> getVehicleById(int vehicleId) {
 		return vehicleRepo.findById(vehicleId);
+	}
+	
+	@Override
+	public List<Vehicle> getVehicleByUserId(int userId) {
+		return vehicleRepo.findByUserId(userId);
 	}
 	
 	@Override
